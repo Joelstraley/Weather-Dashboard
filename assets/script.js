@@ -1,6 +1,33 @@
-var mainURL = "api.openweathermap.org/data/2.5/weather?q="
-var api = c4ca0a8bcd276697a319df840918bfae
+$(document).ready(function(){
 
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&q=" + queryTerm;
+var apiKey = "c4ca0a8bcd276697a319df840918bfae";
+
+var queryTerm = ""
+
+console.log(runQuery("http://api.openweathermap.org/data/2.5/weather?&appid=c4ca0a8bcd276697a319df840918bfae&q=london")
+);
+
+function runQuery(queryURL){
+
+    $.ajax({url: queryURL,
+    method: "GET"})
+    .done(function(OWData) {
+        console.log(OWData);
+    })
+}
+
+/* function clear() {
+    $("#weatherblock").empty();
+  } */
+
+
+$('#citySearch').on('click', function(event){
+   alert("test");
+   console.log(queryURL)
+    runQuery("http://api.openweathermap.org/data/2.5/weather?&appid=c4ca0a8bcd276697a319df840918bfae&q=london");
+    return false;
+});
 
 
 //1. take citySearch input and do AJAX call to main OpenWeather API
@@ -12,4 +39,4 @@ var api = c4ca0a8bcd276697a319df840918bfae
 //4. save Searched City into local storage so it reloads upon refresh. 
 
 
-
+})
