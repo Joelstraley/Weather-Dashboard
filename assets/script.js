@@ -8,27 +8,33 @@ var wind = $('#wind-speed');
 var UVindex = $('#UVindex'); 
 
 var apiKey = "c4ca0a8bcd276697a319df840918bfae";
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey; 
-
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&units=imperial"; 
+var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat+ "&lon=" + lon + "&appid=" + apiKey;
 
 function runQuery(queryURL){
 
     $.ajax({url: queryURL,
     method: "GET"})
-    .done(function(OWData){
+    .then(function(OWData){
         cityName.text(OWData.name+"  ");
         var weatherIcon = OWData.weather[0].icon; 
         var iconurl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
         wIcon.attr('src', iconurl);
         date.text(dayjs().format('M/DD/YYYY'));
-       temp.text(" " + (((OWData.main.temp) - 273.15) * 9 / 5 + 32).toFixed(1) + " ℉");
+       temp.text(" " + (OWData.main.temp).toFixed(0) + " ℉");
         humidity.text(" " + OWData.main.humidity + "%");
-        wind.text(" " + OWData.wind.speed + " mph");
+        wind.text(" " + (OWData.wind.speed).toFixed(1) + " mph");
+    .then(function(UVdata){{url: uvURL,
+            method: "GET"}) 
+    })
+
+
+        var lon = OWData
+        var 
         UVindex.text();
 
     })
 }
-
 
 
 $('#searchBtn').on('click', function(event){
@@ -36,22 +42,13 @@ $('#searchBtn').on('click', function(event){
        var searchInput = $("#searchInput").val().replace(" ","%20").trim();
     //Puts the User Input into API URL for Ajax call 
         var newURL = queryURL + "&q=" + searchInput;
-    //Send AJAX call the URL with user inputted city 
+    //Send the URL with user inputted city to a function to pull Ajax call 
         runQuery(newURL)
-    
-/*     cityName = $("#activeCity").val().trim();
-    temp = $('#temperature').val().trim();
-    humidity = $('#humidity').val().trim();
-    wind = $('#wind-speed').val().trim();
-    UVindex = $('#UVindex').val().trim();  */
     
     });
 
 
 
-//1. take citySearch input and do AJAX call to main OpenWeather API
-    // - api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
- //2. Pull elements for Weather Object to insert into appropriate places in City Block area
     // pull UV information from UV index API
     //set CSS class to be affected by UV index information 
 //3. Pulling from 5 day forecast Weather Object to load info into HTML Cards
