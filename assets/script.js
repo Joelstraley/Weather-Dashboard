@@ -1,5 +1,11 @@
 $(document).ready(function(){
 var cityName = $('#activeCity'); 
+var wIcon = $('#wIcon')
+var date = $('#currentDate')
+var temp = $('#temperature');
+var humidity = $('#humidity');
+var wind = $('#wind-speed');
+var UVindex = $('#UVindex'); 
 
 var apiKey = "c4ca0a8bcd276697a319df840918bfae";
 var queryURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey; 
@@ -10,13 +16,18 @@ function runQuery(queryURL){
     $.ajax({url: queryURL,
     method: "GET"})
     .done(function(OWData){
-        cityName.text(OWData.name);
+        cityName.text(OWData.name+"  ");
         var weatherIcon = OWData.weather[0].icon; 
         var iconurl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
-        $('#wIcon').attr('src', iconurl);
+        wIcon.attr('src', iconurl);
+        date.text(dayjs().format('M/DD/YYYY'));
+       temp.text(" " + (((OWData.main.temp) - 273.15) * 9 / 5 + 32).toFixed(1) + " ℉");
+        humidity.text(" " + OWData.main.humidity + "%");
+        wind.text(" " + OWData.wind.speed + " mph");
+        UVindex.text();
+
     })
 }
-
 
 
 
