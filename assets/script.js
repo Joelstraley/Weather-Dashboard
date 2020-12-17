@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 var cityName = $('#activeCity'); 
 var wIcon = $('#wIcon')
 var date = $('#currentDate')
@@ -8,12 +9,12 @@ var wind = $('#wind-speed');
 var UVindex = $('#UVindex'); 
 
 var apiKey = "c4ca0a8bcd276697a319df840918bfae";
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&units=imperial"; 
-var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat+ "&lon=" + lon + "&appid=" + apiKey;
+var blockURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&units=imperial"; 
+var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?&appid=" + apiKey + + "&units=imperial";
 
-function runQuery(queryURL){
 
-    $.ajax({url: queryURL,
+function runQuery(newURL){
+    $.ajax({url: newURL,
     method: "GET"})
     .then(function(OWData){
         cityName.text(OWData.name+"  ");
@@ -21,30 +22,44 @@ function runQuery(queryURL){
         var iconurl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
         wIcon.attr('src', iconurl);
         date.text(dayjs().format('M/DD/YYYY'));
-       temp.text(" " + (OWData.main.temp).toFixed(0) + " ℉");
+        temp.text(" " + (OWData.main.temp).toFixed(0) + " ℉");
         humidity.text(" " + OWData.main.humidity + "%");
         wind.text(" " + (OWData.wind.speed).toFixed(1) + " mph");
-    .then(function(UVdata){{url: uvURL,
-            method: "GET"}) 
-    })
-
-
-        var lon = OWData
-        var 
-        UVindex.text();
-
+        },
+        function(UVData){
+           preventDefault();
+            var lon = OWData.coord.lon;
+            var lat = OWData.coord.lat;
+            var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat+ "&lon=" + lon + "&appid=" + apiKey;
+            $.ajax({url: uvURL,
+                method: "GET"})
+                complete(function(UVData){   
+                    console.log(lon);
+                UVindex.text(UVData.current.uvi); 
+        })
     })
 }
+   
 
-
+function runForecast(forecastURL){
+    $.ajax({url: forecastURL,
+    method: "GET"})
+    .then(function(forecastData){     
+        day1Date.text(dayjs().format('M/DD/YYYY'));
+        day1temp.text()
+        console.log(forecastData);
+})
+}
+}
 $('#searchBtn').on('click', function(event){
     //records User Input and fixes spaces and cuts off unnecessary end spaces 
        var searchInput = $("#searchInput").val().replace(" ","%20").trim();
     //Puts the User Input into API URL for Ajax call 
-        var newURL = queryURL + "&q=" + searchInput;
+        var newURL = blockURL + "&q=" + searchInput;
     //Send the URL with user inputted city to a function to pull Ajax call 
-        runQuery(newURL)
-    
+        runQuery(newURL);
+        var forecastURL = fivedayURL + "&q=" + searchInput;
+        runForecast(forecastURL);
     });
 
 
