@@ -7,7 +7,7 @@ var temp = $('#temperature');
 var humidity = $('#humidity');
 var wind = $('#wind-speed');
 var UVindex = $('#UVindex'); 
-var day1Date = $('#day1date');
+var day1date = $('#day1date');
 var day1temp = $('#day1temp');
 var day1humidity = $('#day1humidity');
 
@@ -28,19 +28,17 @@ function runQuery(newURL){
         temp.text(" " + (OWData.main.temp).toFixed(0) + " ℉");
         humidity.text(" " + OWData.main.humidity + "%");
         wind.text(" " + (OWData.wind.speed).toFixed(1) + " mph");
-        },
-        function(UVData){
-           preventDefault();
+
             var lon = OWData.coord.lon;
             var lat = OWData.coord.lat;
             var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
             $.ajax({url: uvURL,
                 method: "GET"})
-                complete(function(UVData){   
+                .then(function(UVData){   
                     console.log(lon);
                 UVindex.text(UVData.current.uvi); 
         })
-    })
+    });
 }
    
 
