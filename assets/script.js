@@ -7,10 +7,13 @@ var temp = $('#temperature');
 var humidity = $('#humidity');
 var wind = $('#wind-speed');
 var UVindex = $('#UVindex'); 
+var day1Date = $('#day1date');
+var day1temp = $('#day1temp');
+var day1humidity = $('#day1humidity');
 
 var apiKey = "c4ca0a8bcd276697a319df840918bfae";
 var blockURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&units=imperial"; 
-var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?&appid=" + apiKey + + "&units=imperial";
+var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?&appid=" + apiKey + "&units=imperial";
 
 
 function runQuery(newURL){
@@ -30,7 +33,7 @@ function runQuery(newURL){
            preventDefault();
             var lon = OWData.coord.lon;
             var lat = OWData.coord.lat;
-            var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat+ "&lon=" + lon + "&appid=" + apiKey;
+            var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
             $.ajax({url: uvURL,
                 method: "GET"})
                 complete(function(UVData){   
@@ -41,16 +44,19 @@ function runQuery(newURL){
 }
    
 
+
 function runForecast(forecastURL){
     $.ajax({url: forecastURL,
     method: "GET"})
     .then(function(forecastData){     
-        day1Date.text(dayjs().format('M/DD/YYYY'));
-        day1temp.text()
-        console.log(forecastData);
-})
+        day1date.text(dayjs().format('M/DD/YYYY'));
+        console.log(forecastData.list[0].main.temp);
+        day1temp.text(forecastData.list[0].main.temp);
+    })
 }
-}
+
+
+
 $('#searchBtn').on('click', function(event){
     //records User Input and fixes spaces and cuts off unnecessary end spaces 
        var searchInput = $("#searchInput").val().replace(" ","%20").trim();
