@@ -33,8 +33,8 @@ var day5humidity = $('#day5humidity');
 var day5icon = $('#wIcon5');
 
 var apiKey = "c4ca0a8bcd276697a319df840918bfae";
-var blockURL = "http://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&units=imperial"; 
-var fivedayURL = "http://api.openweathermap.org/data/2.5/forecast?&appid=" + apiKey + "&units=imperial";
+var blockURL = "https://api.openweathermap.org/data/2.5/weather?&appid=" + apiKey + "&units=imperial"; 
+var fivedayURL = "https://api.openweathermap.org/data/2.5/forecast?&appid=" + apiKey + "&units=imperial";
 
 
 //Ajax call pull informaiton into the main City-Block data fields 
@@ -44,7 +44,7 @@ function runQuery(newURL){
     .then(function(OWData){
         cityName.text(OWData.name+"  ");
         var weatherIcon = OWData.weather[0].icon; 
-        var iconurl = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
+        var iconurl = "https://openweathermap.org/img/w/" + weatherIcon + ".png";
         wIcon.attr('src', iconurl);
         date.text(dayjs().format('M/DD/YYYY'));
         temp.text(" " + (OWData.main.temp).toFixed(0) + " ℉");
@@ -77,6 +77,8 @@ function runQuery(newURL){
 } */
 
 
+
+
 function runForecast(forecastURL){
     $.ajax({url: forecastURL,
     method: "GET"})
@@ -85,27 +87,27 @@ function runForecast(forecastURL){
         day1date.text((dayjs((forecastData.list[0].dt * 1000)).format('M/DD/YY')));    
         day1temp.text(forecastData.list[0].main.temp.toFixed(0) + "℉");
         day1humidity.text(forecastData.list[0].main.humidity + "%");
-        day1icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[0].weather[0].icon + ".png");
+        day1icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[0].weather[0].icon + ".png");
        
         day2date.text((dayjs((forecastData.list[9].dt * 1000)).format('M/DD/YY')));    
         day2temp.text(forecastData.list[9].main.temp.toFixed(0) + "℉");
         day2humidity.text(forecastData.list[9].main.humidity + "%");
-        day2icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[9].weather[0].icon + ".png");
+        day2icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[9].weather[0].icon + ".png");
 
         day3date.text((dayjs((forecastData.list[17].dt * 1000)).format('M/DD/YY')));    
         day3temp.text(forecastData.list[17].main.temp.toFixed(0) + "℉");
         day3humidity.text(forecastData.list[17].main.humidity + "%");
-        day3icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[17].weather[0].icon + ".png");
+        day3icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[17].weather[0].icon + ".png");
         
         day4date.text((dayjs((forecastData.list[25].dt * 1000)).format('M/DD/YY')));    
         day4temp.text(forecastData.list[25].main.temp.toFixed(0) + "℉");
         day4humidity.text(forecastData.list[25].main.humidity + "%");
-        day4icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[25].weather[0].icon + ".png");
+        day4icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[25].weather[0].icon + ".png");
     
         day5date.text((dayjs((forecastData.list[33].dt * 1000)).format('M/DD/YY')));    
         day5temp.text(forecastData.list[33].main.temp.toFixed(0) + "℉");
         day5humidity.text(forecastData.list[33].main.humidity + "%");
-        day5icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");    
+        day5icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");    
   
    
     })
