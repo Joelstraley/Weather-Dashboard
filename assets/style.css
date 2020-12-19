@@ -4,10 +4,27 @@
     color: white;
     font-family: Georgia, 'Times New Roman', Times, serif;
     padding: 20px;
+    margin: 0px;
 }
 
 #weatherblock {
     border: 1px ridge #000000;
-    border-radius: 10px;
-    
+    border-radius: 10px;   
+    margin: 10px; 
+    padding: 10px 20px;
+}
+
+#icon {
+    font-size: 10px;
+}
+
+#leftColumn {
+    background-color: lightgrey;
+    padding: 10px;
+    margin: 0px;
+    margin-left: 0px;
+}
+
+div.card > {
+    font-size: 14px;
 }
