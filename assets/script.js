@@ -3,6 +3,8 @@ $(document).ready(function(){
 var searchInput 
 var cityName = $('#activeCity'); 
 var leftColumn = $('#leftColumn');
+var weatherBlock = $('#weatherblock');
+var allforecast = $('.allforecast');
 var wIcon = $('#wIcon')
 var date = $('#currentDate')
 var temp = $('#temperature');
@@ -56,7 +58,9 @@ function runQuery(newURL){
             $.ajax({url: uvURL,
                 method: "GET"})
                 .then(function(UVData){   
-                UVindex.text(" " + UVData.current.uvi);
+                UVindex.text(" " + UVData.current.uvi) =" ";
+                UVindex.css("background-color", "red");
+                UVindex.css("border-radius", "10px");
                 
                 // console.log(parseInt(UVindex.text))
     //Initiating UVcolor function to apply background color to UVindex  
@@ -72,6 +76,7 @@ function runQuery(newURL){
 
 } */
 
+
 function runForecast(forecastURL){
     $.ajax({url: forecastURL,
     method: "GET"})
@@ -80,29 +85,27 @@ function runForecast(forecastURL){
         day1date.text((dayjs((forecastData.list[0].dt * 1000)).format('M/DD/YY')));    
         day1temp.text(forecastData.list[0].main.temp.toFixed(0) + "℉");
         day1humidity.text(forecastData.list[0].main.humidity + "%");
-
-        console.log(forecastData.list[0].weather[0].icon);
         day1icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[0].weather[0].icon + ".png");
        
         day2date.text((dayjs((forecastData.list[9].dt * 1000)).format('M/DD/YY')));    
         day2temp.text(forecastData.list[9].main.temp.toFixed(0) + "℉");
         day2humidity.text(forecastData.list[9].main.humidity + "%");
-        day2icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[9].weather.icon + ".png");
+        day2icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[9].weather[0].icon + ".png");
 
         day3date.text((dayjs((forecastData.list[17].dt * 1000)).format('M/DD/YY')));    
         day3temp.text(forecastData.list[17].main.temp.toFixed(0) + "℉");
         day3humidity.text(forecastData.list[17].main.humidity + "%");
-        day3icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[17].weather.icon + ".png");
+        day3icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[17].weather[0].icon + ".png");
         
         day4date.text((dayjs((forecastData.list[25].dt * 1000)).format('M/DD/YY')));    
         day4temp.text(forecastData.list[25].main.temp.toFixed(0) + "℉");
         day4humidity.text(forecastData.list[25].main.humidity + "%");
-        day4icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[25].weather.icon + ".png");
+        day4icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[25].weather[0].icon + ".png");
     
         day5date.text((dayjs((forecastData.list[33].dt * 1000)).format('M/DD/YY')));    
         day5temp.text(forecastData.list[33].main.temp.toFixed(0) + "℉");
         day5humidity.text(forecastData.list[33].main.humidity + "%");
-        day5icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[33].weather.icon + ".png");    
+        day5icon.attr('src', "http://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");    
   
    
     })
@@ -110,11 +113,9 @@ function runForecast(forecastURL){
 
 
 
-
-
-
-
 $('#searchBtn').on('click', function(event){
+    allforecast.css("display","block");
+    weatherBlock.show();
     searchInput = $("#searchInput").val().replace(" ","%20").trim();
     //records User Input and fixes spaces and cuts off unnecessary end spaces 
     //Puts the User Input into API URL for Ajax call 
@@ -124,6 +125,7 @@ $('#searchBtn').on('click', function(event){
         var forecastURL = fivedayURL + "&q=" + searchInput;
         runForecast(forecastURL);
         setInput();
+
     });
 
 
@@ -135,10 +137,12 @@ function setInput() {
 
 
 
+ $('#id').hide();
+$('#id').show();
 /// push searchInput into an empty array, set that to local storage and JSON.Parse, loop through array
 // and for each that keeps adding:    
 // $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`);
-
+// and add event-listener to runQuery and runForecast 
 
 
 
