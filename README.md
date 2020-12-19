@@ -12,7 +12,7 @@ Under the search bar the previous user City Search Inputs will be displayed. Onc
 
 Repository contains the following: 
 
-* index.html (site is live at: )
+* index.html (site is live at: https://joelstraley.github.io/Weather-Dashboard/)
 * README.md
 * Assets folder
   * script.js
