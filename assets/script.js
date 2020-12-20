@@ -84,30 +84,30 @@ function runForecast(forecastURL){
     method: "GET"})
     .then(function(forecastData){    
        // day1date.text((parseInt(forecastData.list[0].dt) * 1000).toLocaleSting("en-US", {timeZoneName: "short"}));
-        day1date.text((dayjs((forecastData.list[0].dt * 1000)).format('M/DD/YY')));    
-        day1temp.text(forecastData.list[0].main.temp.toFixed(0) + "℉");
-        day1humidity.text(forecastData.list[0].main.humidity + "%");
-        day1icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[0].weather[0].icon + ".png");
+        day1date.text((dayjs((forecastData.list[9].dt * 1000)).format('M/DD/YY')));    
+        day1temp.text(forecastData.list[9].main.temp.toFixed(0) + "℉");
+        day1humidity.text(forecastData.list[9].main.humidity + "%");
+        day1icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[9].weather[0].icon + ".png");
        
-        day2date.text((dayjs((forecastData.list[9].dt * 1000)).format('M/DD/YY')));    
-        day2temp.text(forecastData.list[9].main.temp.toFixed(0) + "℉");
-        day2humidity.text(forecastData.list[9].main.humidity + "%");
-        day2icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[9].weather[0].icon + ".png");
+        day2date.text((dayjs((forecastData.list[17].dt * 1000)).format('M/DD/YY')));    
+        day2temp.text(forecastData.list[17].main.temp.toFixed(0) + "℉");
+        day2humidity.text(forecastData.list[17].main.humidity + "%");
+        day2icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[17].weather[0].icon + ".png");
 
-        day3date.text((dayjs((forecastData.list[17].dt * 1000)).format('M/DD/YY')));    
-        day3temp.text(forecastData.list[17].main.temp.toFixed(0) + "℉");
-        day3humidity.text(forecastData.list[17].main.humidity + "%");
-        day3icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[17].weather[0].icon + ".png");
+        day3date.text((dayjs((forecastData.list[25].dt * 1000)).format('M/DD/YY')));    
+        day3temp.text(forecastData.list[25].main.temp.toFixed(0) + "℉");
+        day3humidity.text(forecastData.list[25].main.humidity + "%");
+        day3icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[25].weather[0].icon + ".png");
         
-        day4date.text((dayjs((forecastData.list[25].dt * 1000)).format('M/DD/YY')));    
-        day4temp.text(forecastData.list[25].main.temp.toFixed(0) + "℉");
-        day4humidity.text(forecastData.list[25].main.humidity + "%");
-        day4icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[25].weather[0].icon + ".png");
+        day4date.text((dayjs((forecastData.list[33].dt * 1000)).format('M/DD/YY')));    
+        day4temp.text(forecastData.list[33].main.temp.toFixed(0) + "℉");
+        day4humidity.text(forecastData.list[33].main.humidity + "%");
+        day4icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");
     
-        day5date.text((dayjs((forecastData.list[33].dt * 1000)).format('M/DD/YY')));    
-        day5temp.text(forecastData.list[33].main.temp.toFixed(0) + "℉");
-        day5humidity.text(forecastData.list[33].main.humidity + "%");
-        day5icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");    
+        day5date.text((dayjs((forecastData.list[39].dt * 1000)).format('M/DD/YY')));    
+        day5temp.text(forecastData.list[39].main.temp.toFixed(0) + "℉");
+        day5humidity.text(forecastData.list[39].main.humidity + "%");
+        day5icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[39].weather[0].icon + ".png");    
     })
 }
 
@@ -115,7 +115,7 @@ function runForecast(forecastURL){
 
 $('#searchBtn').on('click', function(event){
     allforecast.css("display","block");
-    weatherBlock.show();
+    weatherBlock.show(); 
     searchInput = $("#searchInput").val().replace(" ","%20").trim();
     //records User Input and fixes spaces and cuts off unnecessary end spaces 
     //Puts the User Input into API URL for Ajax call 
@@ -125,19 +125,22 @@ $('#searchBtn').on('click', function(event){
         var forecastURL = fivedayURL + "&q=" + searchInput;
         runForecast(forecastURL);
         setInput();
-
     });
-
 
  //Function to save User Input into local storage // 
 function setInput() {
-    localStorage.setItem("cities", JSON.parse(searchInput));
+    localStorage.setItem("cities", searchInput);
     pastCities.push(searchInput);
-    console.log(pastCities);
     for (i=0; i < pastCities; i++){
-        $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`)
-    }
+        localStorage.getItem("cities", JSON.parse(searchInput))
+    } $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`);
  };
+
+ $(".list-group-item").on('click', function(event){
+        runQuery();
+        runForecast();
+ });
+
 
 
 
