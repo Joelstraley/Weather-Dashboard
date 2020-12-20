@@ -1,3 +1,10 @@
+body {
+    background-image: url("./background_image.jpg"); */
+    background-position: center;
+    background-repeat: repeat;
+    background-size: 2000px 1000px;
+}
+
 .header {
     background-color: black; 
     text-align: center;
@@ -11,12 +18,15 @@
     display: none;
 }
 
+
 #weatherblock {
-    border: 1px ridge #000000;
+    border: 1px ridge white;
     border-radius: 10px;   
+    background-color: white;
     margin: 10px; 
     padding: 10px 20px;
-   display: none; 
+    display: none; 
+
 }
 
 #icon {
@@ -24,10 +34,11 @@
 }
 
 #leftColumn {
-    background-color: lightgrey;
+    /* background-color: lightgrey; */
     padding: 10px;
     margin: 0px;
     margin-left: 0px;
+    text: white;
 }
 
 div.card > {
@@ -35,5 +46,9 @@ div.card > {
 }
 
 .card-body {
-    background-color: lightgrey;
+  /*  background-color: lightgrey; */
+}
+
+.title-text {
+    color: white;
 }

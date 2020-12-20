@@ -150,25 +150,4 @@ function setInput() {
 // and add event-listener to runQuery and runForecast 
 
 
-
-
-
-
-//Function to retreive local storage input values// 
-/*  function save(){
-    $(".hour").each(function(){
-      var currentTime = $(this).text();
-      var storedInput = localStorage.getItem(currentTime);
-      if (storedInput !== null) {
-        $(this).siblings(".userInput").val(storedInput);
-      }
-    })
-  } */
-
-
-    // pull UV information from UV index API
-    //set CSS class to be affected by UV index information 
-//4. save Searched City into local storage so it reloads upon refresh. 
-
-
 })
