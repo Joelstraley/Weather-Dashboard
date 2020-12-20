@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-var searchInput 
+var pastCities = [ ]; 
 var cityName = $('#activeCity'); 
 var leftColumn = $('#leftColumn');
 var weatherBlock = $('#weatherblock');
@@ -108,8 +108,6 @@ function runForecast(forecastURL){
         day5temp.text(forecastData.list[33].main.temp.toFixed(0) + "℉");
         day5humidity.text(forecastData.list[33].main.humidity + "%");
         day5icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");    
-  
-   
     })
 }
 
@@ -131,20 +129,27 @@ $('#searchBtn').on('click', function(event){
     });
 
 
- //Function to save Unser Input into local storage // 
+ //Function to save User Input into local storage // 
 function setInput() {
-    var citySearch = $(".list-group").html(`<li class="list-group-item">${searchInput}</li>`);
-    localStorage.setItem("cities", searchInput);
+    localStorage.setItem("cities", JSON.parse(searchInput));
+    pastCities.push(searchInput);
+    console.log(pastCities);
+    for (i=0; i < pastCities; i++){
+        $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`)
+    }
  };
 
 
 
- $('#id').hide();
-$('#id').show();
+
 /// push searchInput into an empty array, set that to local storage and JSON.Parse, loop through array
 // and for each that keeps adding:    
 // $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`);
+//var citySearch = $(".list-group").html(`<li class="list-group-item">${searchInput}</li>`);
+
 // and add event-listener to runQuery and runForecast 
+
+
 
 
 
