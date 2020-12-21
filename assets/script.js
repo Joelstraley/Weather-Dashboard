@@ -59,7 +59,7 @@ function runQuery(newURL){
                 method: "GET"})
                 .then(function(UVData){   
                 UVindex.text(" " + UVData.current.uvi) =" ";
-                UVindex.css("background-color", "red");
+                UVindex.css("background-color", "red !imprortant;");
                 UVindex.css("border-radius", "10px");
                 
                 // console.log(parseInt(UVindex.text))
@@ -129,6 +129,7 @@ $('#searchBtn').on('click', function(event){
 
  //Function to save User Input into local storage // 
 function setInput() {
+    searchInput = $("#searchInput").val().replace("%20"," ").trim();
     localStorage.setItem("cities", searchInput);
     pastCities.push(searchInput);
     for (i=0; i < pastCities; i++){
