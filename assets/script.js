@@ -59,7 +59,7 @@ function runQuery(newURL){
                 method: "GET"})
                 .then(function(UVData){   
                 UVindex.text(" " + UVData.current.uvi) =" ";
-                UVindex.css("background-color", "red !imprortant;");
+                UVindex.css("background-color", "red");
                 UVindex.css("border-radius", "10px");
                 
                 // console.log(parseInt(UVindex.text))
@@ -69,39 +69,35 @@ function runQuery(newURL){
     });
 }
 
-/* function UVcolor(){
-    if(UVindex.text => 5){
-
-    }
-
-} */
+/* function UVcolor() {} */ 
 
 
 
-
+//Function to do seperate Ajax for 5 day forecast 
 function runForecast(forecastURL){
     $.ajax({url: forecastURL,
     method: "GET"})
     .then(function(forecastData){    
-       // day1date.text((parseInt(forecastData.list[0].dt) * 1000).toLocaleSting("en-US", {timeZoneName: "short"}));
-        day1date.text((dayjs((forecastData.list[9].dt * 1000)).format('M/DD/YY')));    
-        day1temp.text(forecastData.list[9].main.temp.toFixed(0) + "℉");
-        day1humidity.text(forecastData.list[9].main.humidity + "%");
+    
+    //Fill in HTML info with API call data 
+        day1date.text((dayjs((forecastData.list[7].dt * 1000)).format('M/DD/YY')));    
+        day1temp.text(forecastData.list[7].main.temp.toFixed(0) + "℉");
+        day1humidity.text(forecastData.list[7].main.humidity + "%");
         day1icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[9].weather[0].icon + ".png");
        
-        day2date.text((dayjs((forecastData.list[17].dt * 1000)).format('M/DD/YY')));    
-        day2temp.text(forecastData.list[17].main.temp.toFixed(0) + "℉");
-        day2humidity.text(forecastData.list[17].main.humidity + "%");
+        day2date.text((dayjs((forecastData.list[15].dt * 1000)).format('M/DD/YY')));    
+        day2temp.text(forecastData.list[15].main.temp.toFixed(0) + "℉");
+        day2humidity.text(forecastData.list[15].main.humidity + "%");
         day2icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[17].weather[0].icon + ".png");
 
-        day3date.text((dayjs((forecastData.list[25].dt * 1000)).format('M/DD/YY')));    
-        day3temp.text(forecastData.list[25].main.temp.toFixed(0) + "℉");
-        day3humidity.text(forecastData.list[25].main.humidity + "%");
+        day3date.text((dayjs((forecastData.list[23].dt * 1000)).format('M/DD/YY')));    
+        day3temp.text(forecastData.list[23].main.temp.toFixed(0) + "℉");
+        day3humidity.text(forecastData.list[23].main.humidity + "%");
         day3icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[25].weather[0].icon + ".png");
         
-        day4date.text((dayjs((forecastData.list[33].dt * 1000)).format('M/DD/YY')));    
-        day4temp.text(forecastData.list[33].main.temp.toFixed(0) + "℉");
-        day4humidity.text(forecastData.list[33].main.humidity + "%");
+        day4date.text((dayjs((forecastData.list[31].dt * 1000)).format('M/DD/YY')));    
+        day4temp.text(forecastData.list[31].main.temp.toFixed(0) + "℉");
+        day4humidity.text(forecastData.list[31].main.humidity + "%");
         day4icon.attr('src', "https://openweathermap.org/img/w/" + forecastData.list[33].weather[0].icon + ".png");
     
         day5date.text((dayjs((forecastData.list[39].dt * 1000)).format('M/DD/YY')));    
@@ -112,12 +108,13 @@ function runForecast(forecastURL){
 }
 
 
-
+//Event listener tied to Search Button // 
 $('#searchBtn').on('click', function(event){
+    //Information blocks populate - making page much less messier before search// 
     allforecast.css("display","block");
-    weatherBlock.show(); 
+    weatherBlock.show();     
+     //records User Input and fixes spaces and cuts off unnecessary end spaces 
     searchInput = $("#searchInput").val().replace(" ","%20").trim();
-    //records User Input and fixes spaces and cuts off unnecessary end spaces 
     //Puts the User Input into API URL for Ajax call 
         var newURL = blockURL + "&q=" + searchInput;
     //Send the URL with user inputted city to a function to pull Ajax call 
@@ -134,12 +131,15 @@ function setInput() {
     pastCities.push(searchInput);
     for (i=0; i < pastCities; i++){
         localStorage.getItem("cities", JSON.parse(searchInput))
-    } $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`);
+    } $(".list-group").append(`<li class="list-group-item" id="cities">${searchInput}</li>`);
  };
 
- $(".list-group-item").on('click', function(event){
-        runQuery();
-        runForecast();
+ $("#cities").on('click', function(){
+    searchInput = $("#searchInput").val().replace(" ","%20").trim();  
+        var newURL = blockURL + "&q=" + searchInput;
+        runQuery(newURL);
+        var forecastURL = fivedayURL + "&q=" + searchInput;
+        runForecast(forecastURL);
  });
 
 
