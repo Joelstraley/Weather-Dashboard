@@ -19,7 +19,7 @@ Repository contains the following:
   * style.css
 
 ## Screenshots
-![alt text](https://github.com/Joelstraley/Weather-Dashboard/blob/main/assets/Screen%20Shot%202020-12-19%20at%205.30.51%20PM.png?raw=true)
+![alt text](https://github.com/Joelstraley/Weather-Dashboard/blob/main/assets/Weather-Dashboard-Screenshot.png)
 
 
 ## Contributor: 
