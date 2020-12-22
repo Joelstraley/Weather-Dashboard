@@ -57,20 +57,23 @@ function runQuery(newURL){
             var uvURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&appid=" + apiKey;
             $.ajax({url: uvURL,
                 method: "GET"})
-                .then(function(UVData){   
-                UVindex.text(" " + UVData.current.uvi) =" ";
-                UVindex.css("background-color", "red");
-                UVindex.css("border-radius", "10px");
-                
-                // console.log(parseInt(UVindex.text))
-    //Initiating UVcolor function to apply background color to UVindex  
-                //UVcolor();
+                .then(function(UVData){  
+                UVindex.text(" " + UVData.current.uvi + " ");
+         //If...else statement to update backgrund color of UV Index
+                if (UVData.current.uvi <= 2){ 
+                    UVindex.css({"background-color": "green", "border-radius": "25px"});
+                }else if (UVData.current.uvi >= 3 && UVData.current.uvi <= 5 ) {
+                    UVindex.css({"background-color": "yellow", "border-radius": "25px"});
+                }else if (UVData.current.uvi >= 6 && UVData.current.uvi <= 7 ) {
+                    UVindex.css({"background-color": "orange", "border-radius": "25px"});
+                }else if (UVData.current.uvi >= 8 && UVData.current.uvi <= 10 ) {
+                    UVindex.css({"background-color": "red", "border-radius": "25px"});
+                }else if (UVData.current.uvi >= 11) {
+                    UVindex.css({"background-color": "purple", "border-radius": "25px"});
+                }                
         })
     });
 }
-
-/* function UVcolor() {} */ 
-
 
 
 //Function to do seperate Ajax for 5 day forecast 
@@ -134,6 +137,7 @@ function setInput() {
     } $(".list-group").append(`<li class="list-group-item" id="cities">${searchInput}</li>`);
  };
 
+ //working on Event Listener to re-run runQuery and runForecast when previously searched cities are clicked
  $("#cities").on('click', function(){
     searchInput = $("#searchInput").val().replace(" ","%20").trim();  
         var newURL = blockURL + "&q=" + searchInput;
@@ -141,17 +145,4 @@ function setInput() {
         var forecastURL = fivedayURL + "&q=" + searchInput;
         runForecast(forecastURL);
  });
-
-
-
-
-
-/// push searchInput into an empty array, set that to local storage and JSON.Parse, loop through array
-// and for each that keeps adding:    
-// $(".list-group").append(`<li class="list-group-item">${searchInput}</li>`);
-//var citySearch = $(".list-group").html(`<li class="list-group-item">${searchInput}</li>`);
-
-// and add event-listener to runQuery and runForecast 
-
-
 })
