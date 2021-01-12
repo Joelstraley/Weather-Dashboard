@@ -2,7 +2,7 @@
 
 ## Overview
 
-The Weather Dashboard utilizes the Openweather API to display specific weather information based on an city submited into the Search input. Once a City is submitted a jumbotron will populate the City name, date and appropirate weather icon as well as the current temperature, humidity, wind speed and UV index. UV index will be shaded to an appropriate color based on the current UV index in that city. 
+The Weather Dashboard utilizes the Openweather API to display specific weather information based on an city submitted into the Search input. Once a City is submitted a jumbotron will populate the City name, date and appropirate weather icon as well as the current temperature, humidity, wind speed and UV index. UV index will be shaded to an appropriate color based on the current UV index in that city. 
 
 Below a 5 Day forcast will populate for that city. This will show the date, temperature, humidity and appopirate weather icon. 
 
