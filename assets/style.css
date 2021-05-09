@@ -1,8 +1,8 @@
 body {
-    background-image: url("./background_image.jpg"); 
-    background-position: center;
-    background-repeat: repeat;
-    background-size: 2000px 1000px;
+    background-image: url("./background_image.jpg"); */
+    background-position: center; 
+    background-size: 2000px 1000px; 
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .header {
@@ -18,19 +18,23 @@ body {
     display: none;
 }
 
+.title-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
 
-#weatherblock {   
-    background-color: white;
+
+#weatherblock {
+    color: white;
     margin: 10px; 
     padding: 10px 20px;
+    align-items: center;
     display: none; 
-    background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-
 }
 
 #icon {
@@ -50,9 +54,44 @@ div.card > {
 }
 
 .card-body {
-  /*  background-color: lightgrey; */
+    color: white;
+    background-color: ;
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-.title-text {
+#cities {
+    color: black;
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.list-group-item {
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+
+.card-body {
+    background-color: rgba(12, 12, 12, 0.18);
+    align-items: center;
     color: white;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 1-b0px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
