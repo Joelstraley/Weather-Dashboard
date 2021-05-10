@@ -42,7 +42,7 @@ function runQuery(newURL){
     $.ajax({url: newURL,
     method: "GET"})
     .then(function(OWData){
-        cityName.text(OWData.name+"  ");
+        cityName.text(OWData.name+"  " + " - " + " ").css("font-family", "Georgia, 'Times New Roman', Times, serif");
         var weatherIcon = OWData.weather[0].icon; 
         var iconurl = "https://openweathermap.org/img/w/" + weatherIcon + ".png";
         wIcon.attr('src', iconurl);
@@ -61,22 +61,22 @@ function runQuery(newURL){
                 UVindex.text(" " + UVData.current.uvi + " ");
          //If...else statement to update backgrund color of UV Index
                 if (UVData.current.uvi <= 2){ 
-                    UVindex.css({"background-color": "green", "border-radius": "25px"});
+                    UVindex.css({"background-color": "green", "border-radius": "5px", "color": "black"});
                 }else if (UVData.current.uvi >= 3 && UVData.current.uvi <= 5 ) {
-                    UVindex.css({"background-color": "yellow", "border-radius": "25px"});
+                    UVindex.css({"background-color": "yellow", "border-radius": "5px", "color": "black"});
                 }else if (UVData.current.uvi >= 6 && UVData.current.uvi <= 7 ) {
-                    UVindex.css({"background-color": "orange", "border-radius": "25px"});
+                    UVindex.css({"background-color": "orange", "border-radius": "5px", "color": "black"});
                 }else if (UVData.current.uvi >= 8 && UVData.current.uvi <= 10 ) {
-                    UVindex.css({"background-color": "red", "border-radius": "25px"});
+                    UVindex.css({"background-color": "red", "border-radius": "5px"});
                 }else if (UVData.current.uvi >= 11) {
-                    UVindex.css({"background-color": "purple", "border-radius": "25px"});
+                    UVindex.css({"background-color": "purple", "border-radius": "5px", "color": "black"});
                 }                
         })
     });
 }
 
 
-//Function to do seperate Ajax for 5 day forecast 
+//Function to do separate Ajax for 5 day forecast 
 function runForecast(forecastURL){
     $.ajax({url: forecastURL,
     method: "GET"})

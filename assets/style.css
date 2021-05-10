@@ -14,8 +14,18 @@ body {
     margin: 0px;
 }
 
+
 .allforecast {
     display: none;
+    color: black;
+    margin: 10px; 
+  /*   padding: 10px 20px; */
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
 .title-text {
@@ -23,6 +33,10 @@ body {
     color: white;
 }
 
+.title-text-5day {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: white;
+}
 
 #weatherblock {
     color: white;
@@ -31,8 +45,8 @@ body {
     align-items: center;
     display: none; 
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur( 3px );
+    -webkit-backdrop-filter: blur( 3px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
@@ -51,20 +65,17 @@ body {
 
 div.card > {
     font-size: 14px;
-}
-
-.card-body {
-    color: white;
-    background-color: ;
+    background-color:rgb(255, 255, 255);
     align-items: center;
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-#cities {
+
+ #cities {
     color: black;
     align-items: center;
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -72,9 +83,10 @@ div.card > {
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-}
+} 
 
 .list-group-item {
+    background-color: black;
     align-items: center;
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
     backdrop-filter: blur( 4px );
@@ -83,15 +95,25 @@ div.card > {
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
 
-
-
-.card-body {
-    background-color: rgba(12, 12, 12, 0.18);
-    align-items: center;
-    color: white;
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+.col-sm {
+    margin-bottom: 10px;
+}
+.card {
+    background-color: rgb(255, 255, 255);
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
-    border-radius: 1-b0px;
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+.card-body {
+/*     display: grid;
+    gap: 1px; */
+    background-color:rgba(255, 255, 255, .5);
+    align-items: center;
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 10px );
+    -webkit-backdrop-filter: blur( 10px );
+    border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
